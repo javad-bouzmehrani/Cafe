@@ -1,0 +1,81 @@
+/* ==========================================================
+   فونت‌های محلی — هیچ درخواستی به گوگل ارسال نمی‌شود
+   ========================================================== */
+
+/* Vazirmatn — Variable (100..900) */
+@font-face {
+  font-family: "Vazirmatn";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src:
+    url("../assets/fonts/vazirmatn-var.woff2") format("woff2-variations"),
+    url("../assets/fonts/vazirmatn-var.woff2") format("woff2");
+}
+
+/* Playfair Display — Variable (400..900) */
+@font-face {
+  font-family: "Playfair Display";
+  font-style: normal;
+  font-weight: 400 900;
+  font-display: swap;
+  src:
+    url("../assets/fonts/playfair-display-var.woff2") format("woff2-variations"),
+    url("../assets/fonts/playfair-display-var.woff2") format("woff2");
+}
+
+/* Playfair Display Italic — Variable (400..900) */
+@font-face {
+  font-family: "Playfair Display";
+  font-style: italic;
+  font-weight: 400 900;
+  font-display: swap;
+  src:
+    url("../assets/fonts/playfair-display-italic-var.woff2")
+      format("woff2-variations"),
+    url("../assets/fonts/playfair-display-italic-var.woff2") format("woff2");
+}
+
+/* Plus Jakarta Sans — Variable (200..800) */
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src:
+    url("../assets/fonts/jakarta-var.woff2") format("woff2-variations"),
+    url("../assets/fonts/jakarta-var.woff2") format("woff2");
+}
+
+/* Material Symbols Outlined — Variable Icon Font */
+@font-face {
+  font-family: "Material Symbols Outlined";
+  font-style: normal;
+  font-weight: 100 700;
+  font-display: block;
+  src:
+    url("../assets/fonts/material-symbols-outlined.woff2")
+      format("woff2-variations"),
+    url("../assets/fonts/material-symbols-outlined.woff2") format("woff2");
+}
+
+.material-symbols-outlined {
+  font-family: "Material Symbols Outlined";
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: "liga";
+  -webkit-font-smoothing: antialiased;
+  font-variation-settings:
+    "FILL" 0,
+    "wght" 400,
+    "GRAD" 0,
+    "opsz" 24;
+}

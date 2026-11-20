@@ -1,0 +1,56 @@
+/* ==========================================================
+   L'Atelier du Café — Main Stylesheet
+   ========================================================== */
+
+@layer base {
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: #120803;
+    color: #f7ecd9;
+    font-family:
+      "Vazirmatn",
+      -apple-system,
+      BlinkMacSystemFont,
+      sans-serif;
+    overscroll-behavior: none;
+  }
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.paper-panel {
+  background: linear-gradient(
+    175deg,
+    rgba(34, 18, 10, 0.85) 0%,
+    rgba(20, 10, 5, 0.94) 100%
+  );
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(200, 150, 88, 0.16);
+  box-shadow: 0 16px 36px -12px rgba(0, 0, 0, 0.55);
+}
+
+.menu-row {
+  transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.menu-row:hover,
+.menu-row:active {
+  background: rgba(200, 150, 88, 0.06);
+}
+
+.leader-line {
+  flex: 1;
+  height: 1px;
+  margin: 0 0.5rem;
+  background-image: radial-gradient(
+    circle,
+    rgba(200, 150, 88, 0.4) 1px,
+    transparent 1.2px
+  );
+  background-size: 8px 1px;
+  background-repeat: repeat-x;
+  align-self: center;
+}

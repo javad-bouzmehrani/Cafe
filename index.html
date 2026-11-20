@@ -1,0 +1,824 @@
+<!doctype html>
+<html class="dark" dir="rtl" lang="fa">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="web_standard" name="shell-type" />
+    <title>L'Atelier du Café / کافه آتلیه</title>
+
+    <!-- فاوآیکون درون‌خطی (SVG data URI) — بدون فایل جانبی -->
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' fill='%23120803'/%3E%3Cpath d='M18.5 3H6a2 2 0 0 0-2 2v8c0 2.21 1.79 4 4 4h6c2.21 0 4-1.79 4-4v-1h1a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-.5zM6 5h12v8c0 1.1-.9 2-2 2H8c-1.1 0-2-.9-2-2V5zm9 12H6v2h9v-2z' fill='%23c89658'/%3E%3C/svg%3E"
+    />
+
+    <!-- فونت‌های محلی -->
+    <link rel="stylesheet" href="css/fonts.css" />
+
+    <!-- استایل‌های سفارشی -->
+    <link rel="stylesheet" href="css/style.css" />
+
+    <!-- Tailwind لوکال + کانفیگ -->
+    <script src="js/tailwind.js"></script>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              espresso: {
+                950: "#120803",
+                900: "#1a0c06",
+                850: "#201008",
+                800: "#26140b",
+                700: "#381e10",
+                600: "#4e2a16",
+              },
+              amber: {
+                gold: "#c89658",
+                warm: "#e0a96d",
+                glow: "#ffb969",
+                light: "#f3d5b5",
+              },
+              terracotta: "#b85d38",
+              warmBeige: "#f7ecd9",
+            },
+            fontFamily: {
+              vazir: ["Vazirmatn", "sans-serif"],
+              serif: ["Playfair Display", "serif"],
+              latin: ["Plus Jakarta Sans", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+
+  <body
+    class="bg-espresso-950 text-warmBeige min-h-screen selection:bg-amber-gold selection:text-espresso-950 antialiased overflow-x-hidden relative"
+  >
+    <!-- بوم Three.js -->
+    <div
+      class="fixed inset-0 w-full h-full pointer-events-none -z-0 bg-transparent"
+      style="display: block"
+    >
+      <div
+        id="threejs-container-ANIMATION_17"
+        style="width: 100%; height: 100%"
+      ></div>
+    </div>
+
+    <!-- هاله‌های نور محیطی -->
+    <div
+      class="fixed top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-amber-warm/15 rounded-full blur-[140px] pointer-events-none -z-10"
+    ></div>
+    <div
+      class="fixed top-[45%] right-0 w-80 h-80 bg-terracotta/15 rounded-full blur-[120px] pointer-events-none -z-10"
+    ></div>
+
+    <!-- هدر -->
+    <header
+      class="sticky top-0 z-50 w-full bg-espresso-950/85 backdrop-blur-md border-b border-amber-gold/15 transition-all"
+    >
+      <div
+        class="max-w-4xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between"
+      >
+        <div class="flex items-center gap-3">
+          <div
+            class="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-gold/25 to-espresso-800 border border-amber-gold/40 flex items-center justify-center text-amber-warm shadow-md"
+          >
+            <span class="material-symbols-outlined text-[22px]">coffee</span>
+          </div>
+          <div class="flex flex-col text-right">
+            <span
+              class="font-serif font-bold text-lg text-amber-warm tracking-tight"
+              >L'Atelier du Café</span
+            >
+            <span class="text-[11px] text-amber-gold/80 font-medium -mt-0.5"
+              >کافه آتلیه تخصصی</span
+            >
+          </div>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <div
+            class="px-3 py-1.5 rounded-full bg-espresso-900/90 border border-amber-gold/30 flex items-center gap-2 shadow-inner"
+          >
+            <span
+              class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"
+            ></span>
+            <div class="flex flex-col text-left">
+              <span
+                class="text-[11px] font-semibold text-amber-warm leading-tight"
+                >میز شما</span
+              >
+              <span class="text-[9px] text-warmBeige/65 font-latin -mt-0.5"
+                >Atelier Table #04</span
+              >
+            </div>
+          </div>
+          <a
+            aria-label="تماس با پرسنل یا باریستا"
+            class="w-10 h-10 rounded-full bg-espresso-800/80 border border-amber-gold/20 flex items-center justify-center text-amber-warm hover:bg-amber-gold hover:text-espresso-950 active:scale-95 transition-all"
+            href="tel:02122000000"
+            title="پرسنل سالن"
+          >
+            <span class="material-symbols-outlined text-[19px]"
+              >room_service</span
+            >
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- بدنه اصلی -->
+    <main
+      class="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 py-5 flex flex-col gap-6"
+    >
+      <section class="flex flex-col items-center text-center pt-1">
+        <div
+          class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-espresso-900/95 border border-amber-gold/35 shadow-sm mb-3"
+        >
+          <span class="material-symbols-outlined text-amber-gold text-[15px]"
+            >qr_code_scanner</span
+          >
+          <span class="text-[11px] font-medium text-amber-warm"
+            >منوی دیجیتال مهمانان حضوری • سفارش از طریق مهماندار سالن</span
+          >
+        </div>
+        <h1
+          class="text-2xl sm:text-3xl md:text-4xl font-bold text-warmBeige leading-snug tracking-tight max-w-xl"
+        >
+          عصاره‌گیری ناب هنر و اصالت؛
+          <span
+            class="block text-amber-warm font-serif italic text-3xl sm:text-4xl mt-1"
+            >L'Atelier du Café</span
+          >
+        </h1>
+        <p
+          class="text-xs sm:text-sm text-warmBeige/75 leading-relaxed max-w-lg mt-2.5"
+        >
+          دانه‌های تک‌خاستگاه دست‌چین و برشته‌کاری تازه. جهت ثبت سفارش، مهماندار
+          میز در خدمت شماست.
+        </p>
+      </section>
+
+      <div
+        class="paper-panel rounded-2xl p-4 sm:p-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-right border border-amber-gold/25"
+      >
+        <div class="flex items-center gap-3">
+          <div
+            class="w-9 h-9 rounded-lg bg-amber-gold/15 border border-amber-gold/30 flex items-center justify-center text-amber-warm shrink-0"
+          >
+            <span class="material-symbols-outlined text-[20px]">menu_book</span>
+          </div>
+          <div>
+            <h2 class="text-base font-bold text-amber-warm">
+              کارنامه طعم و منوی کاغذی آتلیه
+            </h2>
+            <p class="text-[11px] text-warmBeige/70 mt-0.5">
+              قیمت‌ها به تومان و شامل سرو تخصصی روی میز می‌باشد
+            </p>
+          </div>
+        </div>
+        <div
+          class="flex items-center gap-3 text-[11px] bg-espresso-950/60 px-3.5 py-1.5 rounded-xl border border-amber-gold/15"
+        >
+          <div class="flex items-center gap-1.5 text-warmBeige/80">
+            <span class="material-symbols-outlined text-amber-gold text-[16px]"
+              >wifi</span
+            >
+            <span>وای‌فای مهمان:</span>
+            <span class="font-latin text-amber-warm font-semibold"
+              >Atelier-Guest</span
+            >
+          </div>
+          <span class="text-amber-gold/40">•</span>
+          <div class="flex items-center gap-1 text-warmBeige/70">
+            <span>رمز:</span>
+            <span class="font-latin text-amber-warm font-mono font-bold"
+              >coffee2025</span
+            >
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="flex items-center gap-2 overflow-x-auto pb-1.5 -mx-4 px-4 sm:mx-0 sm:px-0 no-scrollbar"
+        id="menu-nav"
+      >
+        <button
+          class="menu-tab-btn active shrink-0 min-h-[40px] px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-gradient-to-r from-amber-gold to-amber-warm text-espresso-950 shadow-md transition-all"
+          data-category="all"
+          type="button"
+        >
+          تمام منو
+        </button>
+        <button
+          class="menu-tab-btn shrink-0 min-h-[40px] px-4 py-2 rounded-xl text-xs sm:text-sm bg-espresso-900/90 text-warmBeige/80 border border-amber-gold/20 hover:border-amber-gold/50 transition-all"
+          data-category="espresso"
+          type="button"
+        >
+          اسپرسو بار و شیر
+        </button>
+        <button
+          class="menu-tab-btn shrink-0 min-h-[40px] px-4 py-2 rounded-xl text-xs sm:text-sm bg-espresso-900/90 text-warmBeige/80 border border-amber-gold/20 hover:border-amber-gold/50 transition-all"
+          data-category="pourover"
+          type="button"
+        >
+          دم‌آوری تخصصی و پوراور
+        </button>
+        <button
+          class="menu-tab-btn shrink-0 min-h-[40px] px-4 py-2 rounded-xl text-xs sm:text-sm bg-espresso-900/90 text-warmBeige/80 border border-amber-gold/20 hover:border-amber-gold/50 transition-all"
+          data-category="cold"
+          type="button"
+        >
+          سرد و نوشیدنی‌های سیگنچر
+        </button>
+        <button
+          class="menu-tab-btn shrink-0 min-h-[40px] px-4 py-2 rounded-xl text-xs sm:text-sm bg-espresso-900/90 text-warmBeige/80 border border-amber-gold/20 hover:border-amber-gold/50 transition-all"
+          data-category="bakery"
+          type="button"
+        >
+          شیرینی و کیک روز
+        </button>
+      </div>
+
+      <div
+        class="paper-panel rounded-2xl p-4 sm:p-6 divide-y divide-amber-gold/15 flex flex-col gap-5"
+        id="menu-container"
+      >
+        <!-- SECTION 1 -->
+        <section
+          class="menu-category-section flex flex-col gap-3 pt-1"
+          data-cat-section="espresso"
+        >
+          <div class="flex items-center justify-between pb-1">
+            <div class="flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-amber-warm"></span>
+              <h3 class="text-sm sm:text-base font-bold text-amber-warm">
+                اسپرسو بار و نوشیدنی‌های شیری
+              </h3>
+            </div>
+            <span
+              class="font-latin text-[11px] text-amber-gold/75 tracking-wider uppercase font-medium"
+              >Espresso &amp; Milk</span
+            >
+          </div>
+          <article
+            class="menu-row py-3 px-2 sm:px-3 rounded-xl flex flex-col gap-1.5 group cursor-default"
+          >
+            <div class="flex items-baseline justify-between w-full">
+              <div class="flex items-baseline gap-2">
+                <h4
+                  class="text-sm sm:text-base font-bold text-warmBeige group-hover:text-amber-warm transition-colors"
+                >
+                  کورتادو اسپانیایی عسلی
+                </h4>
+                <span
+                  class="font-latin text-[11px] text-warmBeige/50 hidden sm:inline"
+                  >Honey Spanish Cortado</span
+                >
+                <span
+                  class="text-[10px] px-1.5 py-0.5 rounded bg-amber-gold/15 text-amber-warm border border-amber-gold/25 font-latin"
+                  >60ml</span
+                >
+              </div>
+              <div class="leader-line"></div>
+              <div
+                class="text-sm sm:text-base font-bold text-amber-warm whitespace-nowrap"
+              >
+                ۱۶۵,۰۰۰
+                <span class="text-[11px] font-normal text-warmBeige/60"
+                  >تومان</span
+                >
+              </div>
+            </div>
+            <div
+              class="flex items-center justify-between flex-wrap gap-2 text-xs text-warmBeige/70"
+            >
+              <p class="leading-relaxed text-[11px] sm:text-xs">
+                اسپرسوی دوبل، شیر مخملی ارگانیک محلی، قطره‌های عسل وحشی گون و
+                لمس دارچین سیلان.
+              </p>
+              <div
+                class="flex items-center gap-1.5 text-[10px] text-warmBeige/60"
+              >
+                <span
+                  class="bg-espresso-950/70 px-2 py-0.5 rounded border border-amber-gold/15"
+                  >شکلات شیری</span
+                >
+                <span
+                  class="bg-espresso-950/70 px-2 py-0.5 rounded border border-amber-gold/15"
+                  >فندق تست شده</span
+                >
+              </div>
+            </div>
+          </article>
+          <article
+            class="menu-row py-3 px-2 sm:px-3 rounded-xl flex flex-col gap-1.5 group cursor-default"
+          >
+            <div class="flex items-baseline justify-between w-full">
+              <div class="flex items-baseline gap-2">
+                <h4
+                  class="text-sm sm:text-base font-bold text-warmBeige group-hover:text-amber-warm transition-colors"
+                >
+                  اسپرسو دوبل تک‌خاستگاه
+                </h4>
+                <span
+                  class="font-latin text-[11px] text-warmBeige/50 hidden sm:inline"
+                  >Single Origin Double Espresso</span
+                >
+                <span
+                  class="text-[10px] px-1.5 py-0.5 rounded bg-amber-gold/15 text-amber-warm border border-amber-gold/25 font-latin"
+                  >40ml</span
+                >
+              </div>
+              <div class="leader-line"></div>
+              <div
+                class="text-sm sm:text-base font-bold text-amber-warm whitespace-nowrap"
+              >
+                ۱۳۵,۰۰۰
+                <span class="text-[11px] font-normal text-warmBeige/60"
+                  >تومان</span
+                >
+              </div>
+            </div>
+            <div
+              class="flex items-center justify-between flex-wrap gap-2 text-xs text-warmBeige/70"
+            >
+              <p class="leading-relaxed text-[11px] sm:text-xs">
+                عصاره‌گیری از دانه کلمبیا ال‌پارایزو با کرمای غلیظ طلایی و
+                نوت‌های کاکائو تیره و آلوچه سیاه.
+              </p>
+              <div
+                class="flex items-center gap-1.5 text-[10px] text-warmBeige/60"
+              >
+                <span
+                  class="bg-espresso-950/70 px-2 py-0.5 rounded border border-amber-gold/15"
+                  >کاکائو ۹۰٪</span
+                >
+                <span
+                  class="bg-espresso-950/70 px-2 py-0.5 rounded border border-amber-gold/15"
+                  >بادی سنگین</span
+                >
+              </div>
+            </div>
+          </article>
+          <article
+            class="menu-row py-3 px-2 sm:px-3 rounded-xl flex flex-col gap-1.5 group cursor-default"
+          >
+            <div class="flex items-baseline justify-between w-full">
+              <div class="flex items-baseline gap-2">
+                <h4
+                  class="text-sm sm:text-base font-bold text-warmBeige group-hover:text-amber-warm transition-colors"
+                >
+                  فلت وایت سیلک
+                </h4>
+                <span
+                  class="font-latin text-[11px] text-warmBeige/50 hidden sm:inline"
+                  >Silky Flat White</span
+                >
+                <span
+                  class="text-[10px] px-1.5 py-0.5 rounded bg-amber-gold/15 text-amber-warm border border-amber-gold/25 font-latin"
+                  >160ml</span
+                >
+              </div>
+              <div class="leader-line"></div>
+              <div
+                class="text-sm sm:text-base font-bold text-amber-warm whitespace-nowrap"
+              >
+                ۱۷۵,۰۰۰
+                <span class="text-[11px] font-normal text-warmBeige/60"
+                  >تومان</span
+                >
+              </div>
+            </div>
+            <div
+              class="flex items-center justify-between flex-wrap gap-2 text-xs text-warmBeige/70"
+            >
+              <p class="leading-relaxed text-[11px] sm:text-xs">
+                ریسترتوی دوبل با میکروفوم بسیار نازک و ابریشمی شیر بخار دیده،
+                تعادل کامل شیرینی طبیعی شیر و قهوه.
+              </p>
+              <div
+                class="flex items-center gap-1.5 text-[10px] text-warmBeige/60"
+              >
+                <span
+                  class="bg-espresso-950/70 px-2 py-0.5 rounded border border-amber-gold/15"
+                  >کارامل لطیف</span
+                >
+                <span
+                  class="bg-espresso-950/70 px-2 py-0.5 rounded border border-amber-gold/15"
+                  >میکروفوم براق</span
+                >
+              </div>
+            </div>
+          </article>
+        </section>
+
+        <!-- SECTION 2 -->
+        <section
+          class="menu-category-section flex flex-col gap-3 pt-5"
+          data-cat-section="pourover"
+        >
+          <div class="flex items-center justify-between pb-1">
+            <div class="flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-amber-warm"></span>
+              <h3 class="text-sm sm:text-base font-bold text-amber-warm">
+                دم‌آوری تخصصی و پور‌اور
+              </h3>
+            </div>
+            <span
+              class="font-latin text-[11px] text-amber-gold/75 tracking-wider uppercase font-medium"
+              >Pour-Over &amp; Filter Bar</span
+            >
+          </div>
+          <article
+            class="menu-row py-3 px-2 sm:px-3 rounded-xl flex flex-col gap-1.5 group cursor-default"
+          >
+            <div class="flex items-baseline justify-between w-full">
+              <div class="flex items-baseline gap-2">
+                <h4
+                  class="text-sm sm:text-base font-bold text-warmBeige group-hover:text-amber-warm transition-colors"
+                >
+                  وی‌شصت اتیوپی یرگاچف
+                </h4>
+                <span
+                  class="font-latin text-[11px] text-warmBeige/50 hidden sm:inline"
+                  >Ethiopia Yirgacheffe Washed</span
+                >
+                <span
+                  class="text-[10px] px-1.5 py-0.5 rounded bg-terracotta/20 text-amber-warm border border-terracotta/35 font-latin"
+                  >220ml</span
+                >
+              </div>
+              <div class="leader-line"></div>
+              <div
+                class="text-sm sm:text-base font-bold text-amber-warm whitespace-nowrap"
+              >
+                ۱۹۵,۰۰۰
+                <span class="text-[11px] font-normal text-warmBeige/60"
+                  >تومان</span
+                >
+              </div>
+            </div>
+            <div
+              class="flex items-center justify-between flex-wrap gap-2 text-xs text-warmBeige/70"
+            >
+              <p class="leading-relaxed text-[11px] sm:text-xs">
+                عصاره‌گیری کریستالی با فیلتر ژاپنی، اسیدیته درخشان و آرومای
+                گل‌های بهاری کوهستان گدیو در ۹۲ درجه.
+              </p>
+              <div
+                class="flex items-center gap-1.5 text-[10px] text-warmBeige/60"
+              >
+                <span
+                  class="bg-espresso-950/70 px-2 py-0.5 rounded border border-amber-gold/15"
+                  >شکوفه یاس</span
+                >
+                <span
+                  class="bg-espresso-950/70 px-2 py-0.5 rounded border border-amber-gold/15"
+                  >برگاموت مرکباتی</span
+                >
+                <span
+                  class="bg-espresso-950/70 px-2 py-0.5 rounded border border-amber-gold/15"
+                  >چای ارل‌گری</span
+                >
+              </div>
+            </div>
+          </article>
+          <article
+            class="menu-row py-3 px-2 sm:px-3 rounded-xl flex flex-col gap-1.5 group cursor-default"
+          >
+            <div class="flex items-baseline justify-between w-full">
+              <div class="flex items-baseline gap-2">
+                <h4
+                  class="text-sm sm:text-base font-bold text-warmBeige group-hover:text-amber-warm transition-colors"
+                >
+                  کمکس پاناما گیشا بوکت
+                </h4>
+                <span
+                  class="font-latin text-[11px] text-warmBeige/50 hidden sm:inline"
+                  >Panama Geisha Natural</span
+                >
+                <span
+                  class="text-[10px] px-1.5 py-0.5 rounded bg-terracotta/20 text-amber-warm border border-terracotta/35 font-latin"
+                  >250ml</span
+                >
+              </div>
+              <div class="leader-line"></div>
+              <div
+                class="text-sm sm:text-base font-bold text-amber-warm whitespace-nowrap"
+              >
+                ۲۸۰,۰۰۰
+                <span class="text-[11px] font-normal text-warmBeige/60"
+                  >تومان</span
+                >
+              </div>
+            </div>
+            <div
+              class="flex items-center justify-between flex-wrap gap-2 text-xs text-warmBeige/70"
+            >
+              <p class="leading-relaxed text-[11px] sm:text-xs">
+                نژاد افسانه‌ای بوکت با بادی ابریشمی، رایحه مگنولیا، هلو رسیده و
+                پایان فوق‌العاده طولانی و میوه‌ای.
+              </p>
+              <div
+                class="flex items-center gap-1.5 text-[10px] text-warmBeige/60"
+              >
+                <span
+                  class="bg-espresso-950/70 px-2 py-0.5 rounded border border-amber-gold/15"
+                  >هلو شلیل</span
+                >
+                <span
+                  class="bg-espresso-950/70 px-2 py-0.5 rounded border border-amber-gold/15"
+                  >گل مگنولیا</span
+                >
+              </div>
+            </div>
+          </article>
+        </section>
+
+        <!-- SECTION 3 -->
+        <section
+          class="menu-category-section flex flex-col gap-3 pt-5"
+          data-cat-section="cold"
+        >
+          <div class="flex items-center justify-between pb-1">
+            <div class="flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-amber-warm"></span>
+              <h3 class="text-sm sm:text-base font-bold text-amber-warm">
+                سرد و نوشیدنی‌های سیگنچر
+              </h3>
+            </div>
+            <span
+              class="font-latin text-[11px] text-amber-gold/75 tracking-wider uppercase font-medium"
+              >Cold &amp; Signatures</span
+            >
+          </div>
+          <article
+            class="menu-row py-3 px-2 sm:px-3 rounded-xl flex flex-col gap-1.5 group cursor-default"
+          >
+            <div class="flex items-baseline justify-between w-full">
+              <div class="flex items-baseline gap-2">
+                <h4
+                  class="text-sm sm:text-base font-bold text-warmBeige group-hover:text-amber-warm transition-colors"
+                >
+                  پسته کُلد برو کلود
+                </h4>
+                <span
+                  class="font-latin text-[11px] text-warmBeige/50 hidden sm:inline"
+                  >Pistachio Cloud Cold Brew</span
+                >
+                <span
+                  class="text-[10px] px-1.5 py-0.5 rounded bg-amber-gold/15 text-amber-warm border border-amber-gold/25 font-latin"
+                  >300ml</span
+                >
+              </div>
+              <div class="leader-line"></div>
+              <div
+                class="text-sm sm:text-base font-bold text-amber-warm whitespace-nowrap"
+              >
+                ۲۱۰,۰۰۰
+                <span class="text-[11px] font-normal text-warmBeige/60"
+                  >تومان</span
+                >
+              </div>
+            </div>
+            <div
+              class="flex items-center justify-between flex-wrap gap-2 text-xs text-warmBeige/70"
+            >
+              <p class="leading-relaxed text-[11px] sm:text-xs">
+                عصاره‌گیری سرد ۱۸ ساعته قهوه کلمبیا به همراه کرم ابریشمی فوم
+                پسته برشته رفسنجان و وانیل ماداگاسکار.
+              </p>
+              <div
+                class="flex items-center gap-1.5 text-[10px] text-warmBeige/60"
+              >
+                <span
+                  class="bg-espresso-950/70 px-2 py-0.5 rounded border border-amber-gold/15"
+                  >پسته بو داده</span
+                >
+                <span
+                  class="bg-espresso-950/70 px-2 py-0.5 rounded border border-amber-gold/15"
+                  >کارامل سرد</span
+                >
+              </div>
+            </div>
+          </article>
+          <article
+            class="menu-row py-3 px-2 sm:px-3 rounded-xl flex flex-col gap-1.5 group cursor-default"
+          >
+            <div class="flex items-baseline justify-between w-full">
+              <div class="flex items-baseline gap-2">
+                <h4
+                  class="text-sm sm:text-base font-bold text-warmBeige group-hover:text-amber-warm transition-colors"
+                >
+                  اسپرسو تونیک رزماری
+                </h4>
+                <span
+                  class="font-latin text-[11px] text-warmBeige/50 hidden sm:inline"
+                  >Rosemary Espresso Tonic</span
+                >
+                <span
+                  class="text-[10px] px-1.5 py-0.5 rounded bg-amber-gold/15 text-amber-warm border border-amber-gold/25 font-latin"
+                  >280ml</span
+                >
+              </div>
+              <div class="leader-line"></div>
+              <div
+                class="text-sm sm:text-base font-bold text-amber-warm whitespace-nowrap"
+              >
+                ۱۸۵,۰۰۰
+                <span class="text-[11px] font-normal text-warmBeige/60"
+                  >تومان</span
+                >
+              </div>
+            </div>
+            <div
+              class="flex items-center justify-between flex-wrap gap-2 text-xs text-warmBeige/70"
+            >
+              <p class="leading-relaxed text-[11px] sm:text-xs">
+                آب تونیک دست‌ساز، عصاره اسانس پوست گریپ‌فروت، شاخه رزماری دودی
+                شده و شات داغ اسپرسو بر روی یخ بلوری.
+              </p>
+              <div
+                class="flex items-center gap-1.5 text-[10px] text-warmBeige/60"
+              >
+                <span
+                  class="bg-espresso-950/70 px-2 py-0.5 rounded border border-amber-gold/15"
+                  >مرکباتی و گس</span
+                >
+                <span
+                  class="bg-espresso-950/70 px-2 py-0.5 rounded border border-amber-gold/15"
+                  >خنک‌کننده</span
+                >
+              </div>
+            </div>
+          </article>
+        </section>
+
+        <!-- SECTION 4 -->
+        <section
+          class="menu-category-section flex flex-col gap-3 pt-5"
+          data-cat-section="bakery"
+        >
+          <div class="flex items-center justify-between pb-1">
+            <div class="flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-amber-warm"></span>
+              <h3 class="text-sm sm:text-base font-bold text-amber-warm">
+                شیرینی و کیک روز آتلیه
+              </h3>
+            </div>
+            <span
+              class="font-latin text-[11px] text-amber-gold/75 tracking-wider uppercase font-medium"
+              >Daily Artisan Pastry</span
+            >
+          </div>
+          <article
+            class="menu-row py-3 px-2 sm:px-3 rounded-xl flex flex-col gap-1.5 group cursor-default"
+          >
+            <div class="flex items-baseline justify-between w-full">
+              <div class="flex items-baseline gap-2">
+                <h4
+                  class="text-sm sm:text-base font-bold text-warmBeige group-hover:text-amber-warm transition-colors"
+                >
+                  کرواسان بادام و هل فرانسوی
+                </h4>
+                <span
+                  class="font-latin text-[11px] text-warmBeige/50 hidden sm:inline"
+                  >Cardamom Almond French Croissant</span
+                >
+                <span
+                  class="text-[10px] px-1.5 py-0.5 rounded bg-terracotta/20 text-amber-warm border border-terracotta/35"
+                  >پخت روزانه</span
+                >
+              </div>
+              <div class="leader-line"></div>
+              <div
+                class="text-sm sm:text-base font-bold text-amber-warm whitespace-nowrap"
+              >
+                ۱۴۵,۰۰۰
+                <span class="text-[11px] font-normal text-warmBeige/60"
+                  >تومان</span
+                >
+              </div>
+            </div>
+            <div
+              class="flex items-center justify-between flex-wrap gap-2 text-xs text-warmBeige/70"
+            >
+              <p class="leading-relaxed text-[11px] sm:text-xs">
+                خمیر هزارلای کره‌ای با کره اعلای نورماندی، کرم فرانجیپان بادام
+                معطر به هل سبز و پرک‌های برشته بادام زمینی.
+              </p>
+              <div
+                class="flex items-center gap-1.5 text-[10px] text-warmBeige/60"
+              >
+                <span
+                  class="bg-espresso-950/70 px-2 py-0.5 rounded border border-amber-gold/15"
+                  >ترد و چندلایه</span
+                >
+                <span
+                  class="bg-espresso-950/70 px-2 py-0.5 rounded border border-amber-gold/15"
+                  >کره نورماندی</span
+                >
+              </div>
+            </div>
+          </article>
+          <article
+            class="menu-row py-3 px-2 sm:px-3 rounded-xl flex flex-col gap-1.5 group cursor-default"
+          >
+            <div class="flex items-baseline justify-between w-full">
+              <div class="flex items-baseline gap-2">
+                <h4
+                  class="text-sm sm:text-base font-bold text-warmBeige group-hover:text-amber-warm transition-colors"
+                >
+                  چیزکیک سن سباستین کاراملی
+                </h4>
+                <span
+                  class="font-latin text-[11px] text-warmBeige/50 hidden sm:inline"
+                  >San Sebastián Burnt Cheesecake</span
+                >
+                <span
+                  class="text-[10px] px-1.5 py-0.5 rounded bg-amber-gold/15 text-amber-warm border border-amber-gold/25"
+                  >مرکز مذاب</span
+                >
+              </div>
+              <div class="leader-line"></div>
+              <div
+                class="text-sm sm:text-base font-bold text-amber-warm whitespace-nowrap"
+              >
+                ۱۶۰,۰۰۰
+                <span class="text-[11px] font-normal text-warmBeige/60"
+                  >تومان</span
+                >
+              </div>
+            </div>
+            <div
+              class="flex items-center justify-between flex-wrap gap-2 text-xs text-warmBeige/70"
+            >
+              <p class="leading-relaxed text-[11px] sm:text-xs">
+                سطح سوخته و کاراملی شده سنتی باسک، مغز بافت خردلی کرمی با سس
+                شکلات تلخ ۶۵ درصد دست‌ساز.
+              </p>
+              <div
+                class="flex items-center gap-1.5 text-[10px] text-warmBeige/60"
+              >
+                <span
+                  class="bg-espresso-950/70 px-2 py-0.5 rounded border border-amber-gold/15"
+                  >کاراملی برشته</span
+                >
+                <span
+                  class="bg-espresso-950/70 px-2 py-0.5 rounded border border-amber-gold/15"
+                  >بافت ابریشمی</span
+                >
+              </div>
+            </div>
+          </article>
+        </section>
+      </div>
+
+      <div
+        class="w-full rounded-xl bg-espresso-900/60 border border-amber-gold/20 p-3.5 flex items-center justify-between gap-3 text-xs text-warmBeige/80"
+      >
+        <div class="flex items-center gap-2.5">
+          <span class="material-symbols-outlined text-amber-gold text-[20px]"
+            >notifications_active</span
+          >
+          <span
+            >هرگونه حساسیت غذایی یا سلیقه خاص در عصاره‌گیری را به مهماندار اطلاع
+            دهید.</span
+          >
+        </div>
+        <span class="text-amber-warm font-medium whitespace-nowrap"
+          >سرو با احترام</span
+        >
+      </div>
+    </main>
+
+    <footer
+      class="relative z-10 w-full border-t border-amber-gold/15 bg-espresso-950/95 py-5 px-4 mt-8"
+    >
+      <div
+        class="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-warmBeige/65"
+      >
+        <div class="flex items-center gap-2">
+          <span class="w-1.5 h-1.5 rounded-full bg-amber-warm"></span>
+          <span class="font-serif text-amber-warm/90 font-semibold"
+            >L'Atelier du Café</span
+          >
+          <span>• تهران، خیابان فرشته • منوی میز سالن اصلی</span>
+        </div>
+        <p class="text-[11px] text-warmBeige/50 font-latin">
+          © 2025 L'Atelier du Café. All Rights Reserved.
+        </p>
+      </div>
+    </footer>
+
+    <!-- اسکریپت‌ها: ترتیب مهم است -->
+    <script src="js/three.min.js"></script>
+    <script src="js/coffee-scene.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>
